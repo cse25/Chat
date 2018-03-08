@@ -19,7 +19,7 @@ defmodule Chat.Mixfile do
   def application do
     [mod: {Chat, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :ueberauth]]
+                    :phoenix_ecto, :postgrex, :ueberauth, :ueberauth_steam]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,8 @@ defmodule Chat.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:ueberauth, "~> 0.4"}]
+     {:ueberauth_steam, "~> 0.1"},
+     {:poison, "~> 3.0", override: true}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -20,6 +20,13 @@ defmodule Chat.Router do
     get "/chat", ChatController, :index
   end
 
+  scope "/auth", Chat do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/auth", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Chat do
   #   pipe_through :api

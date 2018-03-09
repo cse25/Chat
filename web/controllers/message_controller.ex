@@ -1,4 +1,4 @@
-defmodule Chat.ChatController do
+defmodule Chat.MessageController do
   use Chat.Web, :controller
 
   def index(conn, _params) do

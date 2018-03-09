@@ -20,7 +20,15 @@
           Chat
         </a>
         <ul class="right">
-          <div>Sign In</div>
+          <%= if @conn.assigns[:user] do %>
+            <li>
+              <%= link "Signout", to: auth_path(@conn, :signout) %>
+            </li>
+          <% else %>
+            <li>
+              <%= link "Sign in with Steam", to: auth_path(@conn, :request, "steam") %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>

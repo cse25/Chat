@@ -33,6 +33,12 @@ defmodule Chat.AuthController do
     end
   end
 
+  def signout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: chat_path(conn, :index))
+  end
+
   defp insert_or_update_user(changeset) do
     case Repo.get_by(User, personaname: changeset.changes.personaname) do
       nil ->

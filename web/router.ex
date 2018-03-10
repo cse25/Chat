@@ -18,6 +18,7 @@ defmodule Chat.Router do
 
     get "/", PageController, :index
     get "/messages", MessageController, :index
+    get "/messages/new", MessageController, :new
   end
 
   scope "/auth", Chat do

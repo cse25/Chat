@@ -12,6 +12,12 @@ defmodule Chat.RoomController do
     render conn, "index.html", rooms: rooms
   end
 
+  def show(conn, %{"id" => room_id}) do
+    room = Repo.get!(Room, room_id)
+    
+    render conn, "show.html", room: room
+  end
+
   def new(conn, _params) do
     changeset = Room.changeset(%Room{}, %{})
 

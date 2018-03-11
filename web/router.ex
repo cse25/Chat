@@ -24,6 +24,7 @@ defmodule Chat.Router do
     get "/rooms/:id/edit", RoomController, :edit
     put "/rooms/:id", RoomController, :update
     delete "/rooms/:id/delete", RoomController, :delete
+    get "/rooms/:id", RoomController, :show
   end
 
   scope "/auth", Chat do

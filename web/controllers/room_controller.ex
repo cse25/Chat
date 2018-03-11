@@ -34,4 +34,17 @@ defmodule Chat.RoomController do
     render conn, "edit.html", changeset: changeset, room: room
   end
 
+  def update(conn, %{"id" => room_id, "room" => room}) do
+    old_room = Repo.get(Room, room_id)
+    changeset = Room.changeset(old_room, room)
+
+    case Repo.update(changeset) do
+      {:ok, _room} ->
+        conn
+        |> put_flash(:info, "Room Updated")
+        |> redirect(to: room_path(conn, :index))
+      {:error, changeset} ->
+        render conn, "edit.html", changeset: changeset, room: old_room
+    end
+  end
 end

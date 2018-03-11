@@ -22,6 +22,7 @@ defmodule Chat.Router do
     get "/rooms/new", RoomController, :new
     post "/rooms", RoomController, :create
     get "/rooms/:id/edit", RoomController, :edit
+    put "/rooms/:id", RoomController, :update
   end
 
   scope "/auth", Chat do

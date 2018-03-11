@@ -1,2 +1,9 @@
-<h5>Current Users:</h5>
-<h5>Join Chat</h5>
+<h5>Messages</h5>
+
+<ul class="collection">
+  <%= for message <- @messages do %>
+    <li class="collection-item">
+      <%= message.message %>
+    </li>
+  <% end %>
+</ul>

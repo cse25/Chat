@@ -3,6 +3,7 @@ defmodule Chat.RoomController do
 
   alias Chat.Room
 
+  plug Chat.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
   def index(conn, _params) do
     rooms = Repo.all(Room)
 

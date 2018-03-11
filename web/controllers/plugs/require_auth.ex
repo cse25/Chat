@@ -4,7 +4,7 @@ defmodule Chat.Plugs.RequireAuth do
 
   alias Chat.Router.Helpers
 
-  def init() do
+  def init(_params) do
   end
 
   # params object is whatever is returned from init function
@@ -14,7 +14,7 @@ defmodule Chat.Plugs.RequireAuth do
     else
       conn
       |> put_flash(:error, "You must be logged in")
-      |> redirect(to: Helpers.message_path(conn, :index))
+      |> redirect(to: Helpers.room_path(conn, :index))
       |> halt()
     end
   end

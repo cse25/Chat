@@ -8,13 +8,6 @@ defmodule Chat.AuthController do
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider} = params) do
     user_params = %{personaname: auth.extra.raw_info.user.personaname, steamid: auth.extra.raw_info.user.steamid, provider: provider}
     changeset = User.changeset(%User{}, user_params)
-    IO.puts("+++++")
-    IO.inspect(user_params)
-    IO.puts("+++++")
-    IO.inspect(conn)
-    IO.puts("+++++")
-    IO.inspect(params)
-    IO.puts("+++++")
 
     signin(conn, changeset)
   end

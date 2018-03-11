@@ -1,9 +1,9 @@
-<h5>Messages</h5>
+<h5>Chat Rooms</h5>
 
 <ul class="collection">
-  <%= for message <- @messages do %>
+  <%= for room <- @rooms do %>
     <li class="collection-item">
-      <%= message.message %>
+      <%= room.room %>
     </li>
   <% end %>
 </ul>

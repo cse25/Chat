@@ -4,7 +4,9 @@ defmodule Chat.MessageController do
   alias Chat.Message
 
   def index(conn, _params) do
-    render conn, "index.html"
+    messages = Repo.all(Message)
+
+    render conn, "index.html", messages: messages
   end
 
   def new(conn, _params) do
@@ -19,7 +21,7 @@ defmodule Chat.MessageController do
     case Repo.insert(changeset) do
       {:ok, message} ->
         conn
-        |> redirect(to: message_path(conn, :new))
+        |> redirect(to: message_path(conn, :index))
       {:error, changeset} ->
         render conn, "new.html", changeset: changeset
     end

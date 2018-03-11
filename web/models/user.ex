@@ -5,6 +5,7 @@ defmodule Chat.User do
     field :personaname, :string
     field :provider, :string
     field :steamid, :string
+    has_many :rooms, Chat.Room
 
     timestamps()
   end

@@ -47,4 +47,12 @@ defmodule Chat.RoomController do
         render conn, "edit.html", changeset: changeset, room: old_room
     end
   end
+
+  def delete(conn, %{"id" => room_id}) do
+    Repo.get!(Room, room_id) |> Repo.delete!
+
+    conn
+    |> put_flash(:info, "Room Deleted")
+    |> redirect(to: room_path(conn, :index))
+  end
 end

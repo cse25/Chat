@@ -6,6 +6,7 @@
       <%= room.room %>
       <div class="right">
         <%= link "Edit", to: room_path(@conn, :edit, room) %>
+        <%= link "Delete", to: room_path(@conn, :delete, room), method: "delete" %>
       </div>
     </li>
   <% end %>

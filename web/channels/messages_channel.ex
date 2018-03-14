@@ -1,11 +1,12 @@
 defmodule Chat.MessagesChannel do
   use Chat.Web, :channel
+  alias Chat.Room
 
-  def join(name, _params, socket) do
-    IO.puts(name)
-    # get list of messages
+  def join("messages:" <> room_id, _params, socket) do
+    room_id = String.to_integer(room_id)
+    room = Repo.get(Room, room_id)
 
-    {:ok, %{hey: "there"}, socket}
+    {:ok, %{}, socket}
     # possible returned touples:
     # {:ok, socket}
     # {:ok, %{}, socket}

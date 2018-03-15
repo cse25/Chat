@@ -4,7 +4,7 @@ defmodule Chat.Room do
   schema "rooms" do
     field :room, :string
     belongs_to :user, Chat.User
-    has_many :message, Chat.Messages
+    has_many :messages, Chat.Message
 
     timestamps()
   end

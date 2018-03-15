@@ -1,5 +1,10 @@
 <%= @room.room %>
 
+<div class="input-field">
+  <textarea class="materialize-textarea"></textarea>
+  <button class="btn">Send Message</button>
+</div>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     window.createSocket(<%= @room.id %>)

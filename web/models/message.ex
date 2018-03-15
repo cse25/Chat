@@ -8,4 +8,10 @@ defmodule Chat.Message do
 
     timestamps()
   end
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:message])
+    |> validate_required([:message])
+  end
 end

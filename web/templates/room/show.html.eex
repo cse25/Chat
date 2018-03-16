@@ -1,4 +1,10 @@
-<%= @room.room %>
+<h5>
+  <%= @room.room %>
+</h5>
+
+<ul class="collection">
+
+</ul>
 
 <div class="input-field">
   <textarea class="materialize-textarea"></textarea>

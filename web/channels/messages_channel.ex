@@ -1,20 +1,21 @@
 defmodule Chat.MessagesChannel do
   use Chat.Web, :channel
+
   alias Chat.{Room, Message}
 
   def join("messages:" <> room_id, _params, socket) do
     room_id = String.to_integer(room_id)
-    room = Repo.get(Room, room_id)
+    room = Room
+      |> Repo.get(room_id)
+      |> Repo.preload(:messages)
 
-    {:ok, %{}, assign(socket, :room, room)}
-    # possible returned touples:
-    # {:ok, socket}
-    # {:ok, %{}, socket}
-    # {:error, map}
+    IO.inspect(room)
+
+    {:ok, %{messages: room.messages}, assign(socket, :room, room)}
   end
 
   def handle_in(name, %{"message" => message}, socket) do
-    room = socket.assigns.room
+    room = socket.assigns[:room]
 
     changeset = room
       |> build_assoc(:messages)
@@ -22,10 +23,12 @@ defmodule Chat.MessagesChannel do
 
     case Repo.insert(changeset) do
       {:ok, message} ->
+        broadcast!(socket, "messages:#{socket.assigns[:room].id}:new",
+          %{message: message}
+        )
         {:reply, :ok, socket}
       {:error, _reason} ->
         {:reply, {:error, %{errors: changeset}}, socket}
     end
-    # {:reply, :ok, socket}
   end
 end

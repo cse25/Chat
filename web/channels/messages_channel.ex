@@ -7,7 +7,7 @@ defmodule Chat.MessagesChannel do
     room_id = String.to_integer(room_id)
     room = Room
       |> Repo.get(room_id)
-      |> Repo.preload(:messages)
+      |> Repo.preload(messages: [:user])
 
     {:ok, %{messages: room.messages}, assign(socket, :room, room)}
   end

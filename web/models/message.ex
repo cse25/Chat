@@ -1,7 +1,7 @@
 defmodule Chat.Message do
   use Chat.Web, :model
 
-  @derive {Poison.Encoder, only: [:message]}
+  @derive {Poison.Encoder, only: [:message, :user]}
 
   schema "messages" do
     field :message, :string

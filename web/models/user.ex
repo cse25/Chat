@@ -1,6 +1,8 @@
 defmodule Chat.User do
   use Chat.Web, :model
 
+  @derive {Poison.Encoder, only: [:personaname]}
+
   schema "users" do
     field :personaname, :string
     field :provider, :string

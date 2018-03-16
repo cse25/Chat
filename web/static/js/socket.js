@@ -8,6 +8,7 @@ const createSocket = (roomId) => {
   channel
     .join()
     .receive("ok", resp => {
+      console.log(resp)
       renderMessages(resp.messages)
     })
     .receive("error", resp => {
@@ -38,9 +39,17 @@ function renderMessage(event) {
 }
 
 function messageTemplate(message) {
+  let personaname = 'Anonymous'
+  if (message.user) {
+    personaname = message.user.personaname
+  }
+
   return `
     <li class="collection-item">
       ${message.message}
+      <div class="secondary-content">
+        ${personaname}
+      </div>
     </li>
   `
 }

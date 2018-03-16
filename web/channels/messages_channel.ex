@@ -9,16 +9,16 @@ defmodule Chat.MessagesChannel do
       |> Repo.get(room_id)
       |> Repo.preload(:messages)
 
-    IO.inspect(room)
-
     {:ok, %{messages: room.messages}, assign(socket, :room, room)}
   end
 
   def handle_in(name, %{"message" => message}, socket) do
     room = socket.assigns[:room]
+    # setup user_id/ message association
+    user_id = socket.assigns[:user_id]
 
     changeset = room
-      |> build_assoc(:messages)
+      |> build_assoc(:messages, user_id: user_id)
       |> Message.changeset(%{message: message})
 
     case Repo.insert(changeset) do
